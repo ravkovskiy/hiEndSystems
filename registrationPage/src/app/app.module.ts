@@ -8,13 +8,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { RegistrationComponent } from './registration/registration.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 
+import { EmailValidatorDirective } from './common/directives/valid-email';
+
 import { AppSettingsService } from './common/services/app-settings.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    EmailValidatorDirective
   ],
   imports: [
     BrowserModule,

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AppSettingsService } from './../common/services/app-settings.service';
 import { RegModel } from './../common/models/reg-model';
+
+import { emailValidator } from './../common/directives/valid-email';
 
 @Component({
   selector: 'app-registration',
@@ -12,12 +14,19 @@ import { RegModel } from './../common/models/reg-model';
 })
 export class RegistrationComponent implements OnInit {
   regModel: RegModel;
+  regForm: any;
   constructor(private router: Router,
     private appSettings: AppSettingsService) {
     this.regModel = new RegModel();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    /*this.regForm = new FormGroup({
+      'email': new FormControl(this.regModel.email, [
+        Validators.required,
+        emailValidator()
+      ])
+    })*/
   }
 
   onSubmit(form: NgForm) {
