@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+form {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-top: 20px;
+}
+form .md-btn {
+    padding: 10px 40px;
+}
+
+form .welcome-container {
+    height: 100px;
+}
+
+form .welcome-container p {
+    position: absolute;
+    left: 50px;
+    top: 50%;
+}
