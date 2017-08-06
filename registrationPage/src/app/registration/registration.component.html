@@ -3,27 +3,87 @@
     <div class="col-xs-12">
       <div class="row">
         <div class="col-sm-offset-3 col-sm-6">
-          <form class="form-signin">
+          <form class="form-signin"
+                name="regForm"
+                #regForm="ngForm"
+                novalidate
+                (submit)="onSubmit(regForm)">
             <h2 class="form-signin-heading">Registration</h2>
-            <div class="form-group">
-              <label for="inputEmail">Name</label>
-              <input type="email" id="inputEmail" class="form-control" placeholder="" required="" autofocus="">
+            <div class="form-group"
+                 [ngClass]="{'data-error': (regForm.submitted && !name.valid) }">
+              <label for="inputName">Name</label>
+              <input type="text" 
+                     id="inputName"
+                     name="name"
+                     class="form-control"
+                     #name="ngModel"
+                     [(ngModel)]="regModel.name"
+                     placeholder="" 
+                     required 
+                     autofocus>
             </div>
-            <div class="form-group">
-              <label for="inputPassword">Login</label>
-              <input type="password" id="inputPassword" class="form-control" placeholder="" required="">
+            <div [hidden]="!regForm.submitted || name.valid">
+              <div class="alert alert-danger">Name is required</div>
             </div>
-            <div class="form-group">
-              <label for="inputPassword">Email</label>
-              <input type="password" id="inputPassword" class="form-control" placeholder="" required="">
+            <div class="form-group"
+                 [ngClass]="{'data-error': (regForm.submitted && !login.valid) }">
+              <label for="inputLogin">Login</label>
+              <input type="text" 
+                     id="inputLogin"
+                     name="login" 
+                     class="form-control"
+                     #login="ngModel"
+                     [(ngModel)]="regModel.login"
+                     placeholder="" 
+                     required>
             </div>
-            <div class="form-group">
+            <div [hidden]="!regForm.submitted || login.valid">
+              <div class="alert alert-danger">Login is required</div>
+            </div>
+            <div class="form-group"
+                 [ngClass]="{'data-error': (regForm.submitted && !email.valid) }">
+              <label for="inputEmail">Email</label>
+              <input type="text" 
+                     id="inputEmail"
+                     name="email"
+                     #email="ngModel"
+                     [(ngModel)]="regModel.email"
+                     class="form-control" 
+                     placeholder="" 
+                     required>
+            </div>
+            <div [hidden]="!regForm.submitted || email.valid">
+              <div class="alert alert-danger">Email is required</div>
+            </div>
+            <div class="form-group"
+                 [ngClass]="{'data-error': (regForm.submitted && !password.valid) }">
               <label for="inputPassword">Password</label>
-              <input type="password" id="inputPassword" class="form-control" placeholder="" required="">
+              <input type="password" 
+                     id="inputPassword" 
+                     name="password"
+                     class="form-control" 
+                     #password="ngModel"
+                     [(ngModel)]="regModel.password"
+                     placeholder="" 
+                     required>
             </div>
-            <div class="form-group">
-              <label for="inputPassword">Repeat password</label>
-              <input type="password" id="inputPassword" class="form-control" placeholder="" required="">
+            <div [hidden]="!regForm.submitted || password.valid">
+              <div class="alert alert-danger">Password is required</div>
+            </div>
+            <div class="form-group"
+                 [ngClass]="{'data-error': (regForm.submitted && !confirmPassword.valid) }">
+              <label for="confirmPassword">Repeat password</label>
+              <input type="password" 
+                     id="confirmPassword"
+                     name="confirmPassword" 
+                     class="form-control"
+                     #confirmPassword="ngModel"
+                     [(ngModel)]="regModel.confirmPassword"
+                     placeholder="" 
+                     required>
+            </div>
+            <div [hidden]="!regForm.submitted || confirmPassword.valid">
+              <div class="alert alert-danger">Password is required</div>
             </div>
             <div class="row">
               <div class="col-sm-12">
