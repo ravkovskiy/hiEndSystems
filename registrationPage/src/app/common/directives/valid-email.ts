@@ -1,10 +1,12 @@
 import { Directive } from '@angular/core';
 import { AbstractControl, NG_VALIDATORS, Validator, ValidatorFn } from '@angular/forms';
 
+import { AppConstants } from '../constants/app-constants';
+
 export function emailValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } => {
         if (control.value) {
-            const emailRegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            const emailRegExp = AppConstants.emailRegExp;
             const valid = emailRegExp.test(control.value);
             return valid ? null : { 'validEmail': { value: control.value } };
         } else {
