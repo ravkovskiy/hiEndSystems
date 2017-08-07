@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { AppSettingsService } from './../common/services/app-settings.service';
 import { RegModel } from './../common/models/reg-model';
-
+import { AppConstants } from './../common/constants/app-constants';
 import { emailValidator } from './../common/directives/valid-email';
 
 @Component({
@@ -15,9 +15,11 @@ import { emailValidator } from './../common/directives/valid-email';
 export class RegistrationComponent implements OnInit {
   regModel: RegModel;
   regForm: any;
+  emailRegExp: string;
   constructor(private router: Router,
     private appSettings: AppSettingsService) {
     this.regModel = new RegModel();
+    this.emailRegExp = AppConstants.emailRegExp;
   }
 
   ngOnInit(): void {

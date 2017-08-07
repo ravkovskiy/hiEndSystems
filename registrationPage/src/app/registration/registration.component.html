@@ -48,7 +48,7 @@
                      name="email"
                      #email="ngModel"
                      [(ngModel)]="regModel.email"
-                     valid-email
+                     validEmail="{{emailRegExp}}"
                      class="form-control" 
                      placeholder="" 
                      required>
