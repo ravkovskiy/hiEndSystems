@@ -48,7 +48,7 @@
                      name="email"
                      #email="ngModel"
                      [(ngModel)]="regModel.email"
-                     validEmail="{{emailRegExp}}"
+                     [validEmail]="emailRegExp"
                      class="form-control" 
                      placeholder="" 
                      required>
@@ -66,11 +66,13 @@
                      class="form-control" 
                      #password="ngModel"
                      [(ngModel)]="regModel.password"
+                     [validPassword]="passwordRegExp"
                      placeholder="" 
                      required>
             </div>
-            <div [hidden]="!regForm.submitted || password.valid">
-              <div class="alert alert-danger">Password is required</div>
+            <div class="alert alert-danger" *ngIf="regForm.submitted && !password.valid">
+              <div *ngIf="password.errors.required">Password is required</div>
+              <div *ngIf="password.errors.validPassword">Password must be at least 5 characters, and must include at least one upper case letter, one lower case letter, and one numeric digit</div>
             </div>
             <div class="form-group"
                  [ngClass]="{'data-error': (regForm.submitted && !confirmPassword.valid) }">
@@ -81,11 +83,13 @@
                      class="form-control"
                      #confirmPassword="ngModel"
                      [(ngModel)]="regModel.confirmPassword"
+                     validateEqual="password"
                      placeholder="" 
                      required>
             </div>
-            <div [hidden]="!regForm.submitted || confirmPassword.valid">
-              <div class="alert alert-danger">Password is required</div>
+            <div class="alert alert-danger" *ngIf="regForm.submitted && !confirmPassword.valid">
+              <div *ngIf="confirmPassword.errors.required">Password is required</div>
+              <div *ngIf="confirmPassword.errors.validateEqual">Password don't match</div>
             </div>
             <div class="row">
               <div class="col-sm-12">

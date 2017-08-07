@@ -9,6 +9,8 @@ import { RegistrationComponent } from './registration/registration.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 import { EmailValidatorDirective } from './common/directives/valid-email';
+import { passwordValidatorDirective } from './common/directives/valid-password';
+import { EqualValidator } from './common/directives/valid-equal';
 
 import { AppSettingsService } from './common/services/app-settings.service';
 
@@ -17,7 +19,9 @@ import { AppSettingsService } from './common/services/app-settings.service';
     AppComponent,
     RegistrationComponent,
     ConfirmationComponent,
-    EmailValidatorDirective
+    EmailValidatorDirective,
+    passwordValidatorDirective,
+    EqualValidator
   ],
   imports: [
     BrowserModule,

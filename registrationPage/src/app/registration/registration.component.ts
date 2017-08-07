@@ -6,6 +6,7 @@ import { AppSettingsService } from './../common/services/app-settings.service';
 import { RegModel } from './../common/models/reg-model';
 import { AppConstants } from './../common/constants/app-constants';
 import { emailValidator } from './../common/directives/valid-email';
+import { passwordValidator } from './../common/directives/valid-password';
 
 @Component({
   selector: 'app-registration',
@@ -15,11 +16,13 @@ import { emailValidator } from './../common/directives/valid-email';
 export class RegistrationComponent implements OnInit {
   regModel: RegModel;
   regForm: any;
-  emailRegExp: string;
+  emailRegExp: RegExp;
+  passwordRegExp: RegExp;
   constructor(private router: Router,
     private appSettings: AppSettingsService) {
     this.regModel = new RegModel();
     this.emailRegExp = AppConstants.emailRegExp;
+    this.passwordRegExp = AppConstants.pwRegExp;
   }
 
   ngOnInit(): void {
