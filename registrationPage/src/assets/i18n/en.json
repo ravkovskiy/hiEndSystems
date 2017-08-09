@@ -1,0 +1,16 @@
+{
+    "HELLO": "Welcome {{value}}!",
+    "REGISTRATION_FORM_HEADER": "Registration",
+    "CONFIRMATION_FORM_HEADER": "Confirmation",
+    "NAME": "Name",
+    "LOGIN": "Login",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "REPEAT_PASSWORD": "Repeat password",
+    "REQUIRED": "Field is required",
+    "INVALID_VALUE": "Value is invalid",
+    "NOT_MATCH_VALUE": "Values don't match",
+    "PASSWORD_REQUIREMENTS": "Password must be at least 5 characters, and must include at least one upper case letter, one lower case letter, and one numeric digit",
+    "NEXT": "Next",
+    "BACK": "Go to registration"
+}

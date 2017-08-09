@@ -1,17 +1,18 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-sm-12">
       <div class="row">
         <div class="col-sm-offset-3 col-sm-6">
           <form>
-            <h2>Confirmation</h2>
+            <h2 class="form-heading">{{ 'CONFIRMATION_FORM_HEADER' | translate }}</h2>
+            <language-switch></language-switch>
             <div class="welcome-container">
-              <p>Welcome Alex!</p>
+              <p>{{ 'HELLO' | translate:{value: 'Alex'} }}</p>
             </div>
             <div class="row">
               <div class="col-sm-12">
                 <button class="btn btn-lg btn-default pull-left"
-                        (click)="goToRegistration()">go to registration</button>
+                        (click)="goToRegistration()">{{ 'BACK' | translate }}</button>
               </div>
             </div>
           </form>
