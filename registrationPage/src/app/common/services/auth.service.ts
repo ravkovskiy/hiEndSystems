@@ -8,7 +8,6 @@ export class AuthService {
     constructor() {
     }
     singUp(user: any) {
-        console.log('user', user);
         if (user) {
             this.user = user;
             this.access = true;

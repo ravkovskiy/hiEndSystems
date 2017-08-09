@@ -24,7 +24,7 @@
                       autofocus>
             </div>
             <div [hidden]="!regForm.submitted || name.valid">
-              <div class="alert alert-danger">{{ 'REQUIRED' | translate }}</div>
+              <div class="alert alert-danger">{{ 'NAME_REQUIRED' | translate }}</div>
             </div>
             <div class="form-group"
                   [ngClass]="{'data-error': (regForm.submitted && !login.valid) }">
@@ -39,7 +39,7 @@
                       required>
             </div>
             <div [hidden]="!regForm.submitted || login.valid">
-              <div class="alert alert-danger">{{ 'REQUIRED' | translate }}</div>
+              <div class="alert alert-danger">{{ 'LOGIN_REQUIRED' | translate }}</div>
             </div>
             <div class="form-group"
                   [ngClass]="{'data-error': (regForm.submitted && !email.valid) }">
@@ -55,8 +55,8 @@
                       required>
             </div>
             <div class="alert alert-danger" *ngIf="regForm.submitted && !email.valid">
-              <div *ngIf="email.errors.required">{{ 'REQUIRED' | translate }}</div>
-              <div *ngIf="email.errors.validEmail">{{ 'INVALID_VALUE' | translate }}</div>
+              <div *ngIf="email.errors.required">{{ 'EMAIL_REQUIRED' | translate }}</div>
+              <div *ngIf="email.errors.validEmail">{{ 'INVALID_EMAIL' | translate }}</div>
             </div>
             <div class="form-group"
                   [ngClass]="{'data-error': (regForm.submitted && !password.valid) }">
@@ -72,7 +72,7 @@
                       required>
             </div>
             <div class="alert alert-danger" *ngIf="regForm.submitted && !password.valid">
-              <div *ngIf="password.errors.required">{{ 'REQUIRED' | translate }}</div>
+              <div *ngIf="password.errors.required">{{ 'PASSWORD_REQUIRED' | translate }}</div>
               <div *ngIf="password.errors.validPassword">{{ 'PASSWORD_REQUIREMENTS' | translate }}</div>
             </div>
             <div class="form-group"
@@ -89,8 +89,8 @@
                       required>
             </div>
             <div class="alert alert-danger" *ngIf="regForm.submitted && !confirmPassword.valid">
-              <div *ngIf="confirmPassword.errors.required">{{ 'REQUIRED' | translate }}</div>
-              <div *ngIf="confirmPassword.errors.validateEqual">{{ 'NOT_MATCH_VALUE' | translate }}</div>
+              <div *ngIf="confirmPassword.errors.required">{{ 'PASSWORD_REQUIRED' | translate }}</div>
+              <div *ngIf="confirmPassword.errors.validateEqual">{{ 'NOT_MATCH_PASSWORD' | translate }}</div>
             </div>
             <div class="row">
               <div class="col-sm-12">
