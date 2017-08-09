@@ -10,7 +10,8 @@ import { AuthService } from './../common/services/auth.service';
   styleUrls: ['./confirmation.component.css']
 })
 export class ConfirmationComponent implements OnInit {
-  user: any;
+  public user: any;
+  
   constructor(private router: Router,
     private appSettings: AppSettingsService,
     private auth: AuthService) { }

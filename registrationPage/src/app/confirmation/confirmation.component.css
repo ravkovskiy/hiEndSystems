@@ -1,0 +1,8 @@
+form .welcome-container {
+    height: 100px;
+}
+form .welcome-container p {
+    position: absolute;
+    left: 50px;
+    top: 50%;
+}

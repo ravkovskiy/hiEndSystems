@@ -17,10 +17,11 @@ import { LanguageService } from './language.service';
                     <a href="javascript:void(0)">RU</a>
                 </li>
               </ul>
-            </div>`
+            </div>`,
+            styleUrls: ['./language.component.css']
 })
 export class LanguageComponent implements OnInit {
-  currentLanguage: string;
+  public currentLanguage: string;
   constructor(private languageService: LanguageService) { }
 
   ngOnInit() {

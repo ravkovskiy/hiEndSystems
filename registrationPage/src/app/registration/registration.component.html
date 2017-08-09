@@ -11,7 +11,7 @@
             <h2 class="form-signin-heading form-heading">{{ 'REGISTRATION_FORM_HEADER' | translate }}</h2>
             <language-switch></language-switch>
             <div class="form-group"
-                  [ngClass]="{'data-error': (regForm.submitted && !name.valid) }">
+                 [ngClass]="{'data-error': (regForm.submitted && !name.valid) }">
               <label for="inputName">{{ 'NAME' | translate }}</label>
               <input type="text" 
                       id="inputName"
@@ -67,6 +67,8 @@
                       class="form-control" 
                       #password="ngModel"
                       [(ngModel)]="regModel.password"
+                      validateEqual="confirmPassword"
+                      reverse="true"
                       [validPassword]="passwordRegExp"
                       placeholder="" 
                       required>
@@ -83,14 +85,14 @@
                       name="confirmPassword" 
                       class="form-control"
                       #confirmPassword="ngModel"
-                      [(ngModel)]="regModel.confirmPassword"
+                      [(ngModel)]="confirmPass"
                       validateEqual="password"
                       placeholder="" 
                       required>
             </div>
             <div class="alert alert-danger" *ngIf="regForm.submitted && !confirmPassword.valid">
               <div *ngIf="confirmPassword.errors.required">{{ 'PASSWORD_REQUIRED' | translate }}</div>
-              <div *ngIf="confirmPassword.errors.validateEqual">{{ 'NOT_MATCH_PASSWORD' | translate }}</div>
+              <div *ngIf="confirmPassword.errors['validateEqual']===false">{{ 'NOT_MATCH_PASSWORD' | translate }}</div>
             </div>
             <div class="row">
               <div class="col-sm-12">

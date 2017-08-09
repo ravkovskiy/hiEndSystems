@@ -10,24 +10,32 @@ import { Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
 
 export class EqualValidator implements Validator {
     constructor(
-        @Attribute('validateEqual') public validateEqual: string) {
+        @Attribute('validateEqual') public validateEqual: string,
+        @Attribute('reverse') public reverse: string) {
 
     }
     validate(control: AbstractControl): { [key: string]: any } {
-
         let value = control.value;
+        let equal = control.root.get(this.validateEqual);
+
         if (value) {
-            let equal = control.root.get(this.validateEqual);
-            if (equal && value !== equal.value) {
+            if (equal && value !== equal.value && !this.isReverse) {
                 return {
-                    validateEqual: { value: value }
+                    validateEqual: false
                 }
             }
-            else if (equal && value === equal.value) {
-                return null;
+            if (equal && value === equal.value && this.isReverse) {
+                delete equal.errors['validateEqual'];
+                if (!Object.keys(equal.errors).length) equal.setErrors(null);
             }
-        } else {
-            return null;
+            if (equal && value !== equal.value && this.isReverse) {
+                equal.setErrors({ validateEqual: false });
+            }
         }
+        return null;
+    }
+    private get isReverse() {
+        if (!this.reverse) return false;
+        return this.reverse === 'true' ? true : false;
     }
 }

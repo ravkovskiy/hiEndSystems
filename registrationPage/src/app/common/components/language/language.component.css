@@ -1,0 +1,8 @@
+.translate-switch {
+    position: absolute;
+    right: 37px;
+    top: 40px;
+}
+.translate-switch .nav-tabs>li>a {
+    margin-right: 0;
+}

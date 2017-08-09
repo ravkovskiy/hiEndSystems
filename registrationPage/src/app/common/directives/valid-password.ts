@@ -9,7 +9,6 @@ export function passwordValidator(passwordRegExp: RegExp): ValidatorFn {
         } else {
             return null;
         }
-
     };
 }
 

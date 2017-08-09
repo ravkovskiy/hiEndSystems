@@ -15,30 +15,30 @@ import { passwordValidator } from './../common/directives/valid-password';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-  regModel: RegModel;
-  regForm: any;
-  emailRegExp: RegExp;
-  passwordRegExp: RegExp;
+
+  public regModel: RegModel;
+  public confirmPass: string;
+  public emailRegExp: RegExp;
+  public passwordRegExp: RegExp;
+
   constructor(private router: Router,
     private appSettings: AppSettingsService,
     private auth: AuthService) {
+
     this.regModel = new RegModel();
     this.emailRegExp = AppConstants.emailRegExp;
     this.passwordRegExp = AppConstants.pwRegExp;
   }
 
   ngOnInit(): void {
-    /*this.regForm = new FormGroup({
-      'email': new FormControl(this.regModel.email, [
-        Validators.required,
-        emailValidator()
-      ])
-    })*/
   }
 
   onSubmit(form: NgForm) {
-    if (form.invalid) return;
-    this.auth.singUp(Object.assign({}, this.regModel));
+    if (form.invalid) {
+      return;
+    }
+    let user: any = Object.assign({}, this.regModel);
+    this.auth.singUp(user);
     form.resetForm();
     this.router.navigate([this.appSettings.confirmPath]);
   }

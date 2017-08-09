@@ -9,7 +9,6 @@ export function emailValidator(emailRegExp: RegExp): ValidatorFn {
         } else {
             return null;
         }
-
     };
 }
 
