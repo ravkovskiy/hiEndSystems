@@ -3,6 +3,7 @@ import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AppSettingsService } from './../common/services/app-settings.service';
+import { AuthService } from './../common/services/auth.service';
 import { RegModel } from './../common/models/reg-model';
 import { AppConstants } from './../common/constants/app-constants';
 import { emailValidator } from './../common/directives/valid-email';
@@ -19,7 +20,8 @@ export class RegistrationComponent implements OnInit {
   emailRegExp: RegExp;
   passwordRegExp: RegExp;
   constructor(private router: Router,
-    private appSettings: AppSettingsService) {
+    private appSettings: AppSettingsService,
+    private auth: AuthService) {
     this.regModel = new RegModel();
     this.emailRegExp = AppConstants.emailRegExp;
     this.passwordRegExp = AppConstants.pwRegExp;
@@ -35,8 +37,8 @@ export class RegistrationComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.dir(form);
     if (form.invalid) return;
+    this.auth.singUp(Object.assign({}, this.regModel));
     form.resetForm();
     this.router.navigate([this.appSettings.confirmPath]);
   }

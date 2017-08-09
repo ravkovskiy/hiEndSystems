@@ -15,6 +15,8 @@ import { passwordValidatorDirective } from './common/directives/valid-password';
 import { EqualValidator } from './common/directives/valid-equal';
 
 import { AppSettingsService } from './common/services/app-settings.service';
+import { AuthGuard } from './common/services/auth-guard.service';
+import { AuthService } from './common/services/auth.service';
 import { LanguageService } from './common/components/language/language.service';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -49,6 +51,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   providers: [
     AppSettingsService,
+    AuthGuard,
+    AuthService,
     LanguageService
   ],
   bootstrap: [AppComponent]
