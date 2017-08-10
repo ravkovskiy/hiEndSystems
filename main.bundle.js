@@ -96,7 +96,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 var AppComponent = (function () {
     function AppComponent() {
-        this.title = 'app';
     }
     return AppComponent;
 }());
@@ -161,7 +160,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 function HttpLoaderFactory(http) {
-    return new __WEBPACK_IMPORTED_MODULE_17__ngx_translate_http_loader__["a" /* TranslateHttpLoader */](http, "./assets/i18n/", ".json");
+    return new __WEBPACK_IMPORTED_MODULE_17__ngx_translate_http_loader__["a" /* TranslateHttpLoader */](http, './assets/i18n/', '.json');
 }
 var AppModule = (function () {
     function AppModule() {
@@ -206,6 +205,24 @@ AppModule = __decorate([
 
 /***/ }),
 
+/***/ "../../../../../src/app/common/components/language/language.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".translate-switch {\r\n    position: absolute;\r\n    right: 37px;\r\n    top: 40px;\r\n}\r\n.translate-switch .nav-tabs>li>a {\r\n    margin-right: 0;\r\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
 /***/ "../../../../../src/app/common/components/language/language.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -240,7 +257,8 @@ var LanguageComponent = (function () {
 LanguageComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* Component */])({
         selector: 'language-switch',
-        template: "<div class=\"translate-switch\">\n              <ul class=\"nav nav-tabs\">\n                <li role=\"presentation\"\n                    [ngClass]=\"{'active': currentLanguage == 'en' }\"\n                    (click)=\"changeLanguage('en')\">\n                    <a href=\"javascript:void(0)\">EN</a>\n                </li>\n                <li role=\"presentation\"\n                    [ngClass]=\"{'active': currentLanguage == 'ru' }\"\n                    (click)=\"changeLanguage('ru')\">\n                    <a href=\"javascript:void(0)\">RU</a>\n                </li>\n              </ul>\n            </div>"
+        template: "<div class=\"translate-switch\">\n              <ul class=\"nav nav-tabs\">\n                <li role=\"presentation\"\n                    [ngClass]=\"{'active': currentLanguage == 'en' }\"\n                    (click)=\"changeLanguage('en')\">\n                    <a href=\"javascript:void(0)\">EN</a>\n                </li>\n                <li role=\"presentation\"\n                    [ngClass]=\"{'active': currentLanguage == 'ru' }\"\n                    (click)=\"changeLanguage('ru')\">\n                    <a href=\"javascript:void(0)\">RU</a>\n                </li>\n              </ul>\n            </div>",
+        styles: [__webpack_require__("../../../../../src/app/common/components/language/language.component.css")]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__language_service__["a" /* LanguageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__language_service__["a" /* LanguageService */]) === "function" && _a || Object])
 ], LanguageComponent);
@@ -386,26 +404,39 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 
 
 var EqualValidator = EqualValidator_1 = (function () {
-    function EqualValidator(validateEqual) {
+    function EqualValidator(validateEqual, reverse) {
         this.validateEqual = validateEqual;
+        this.reverse = reverse;
     }
     EqualValidator.prototype.validate = function (control) {
         var value = control.value;
+        var equal = control.root.get(this.validateEqual);
         if (value) {
-            var equal = control.root.get(this.validateEqual);
-            if (equal && value !== equal.value) {
+            if (equal && value !== equal.value && !this.isReverse) {
                 return {
-                    validateEqual: { value: value }
+                    validateEqual: false
                 };
             }
-            else if (equal && value === equal.value) {
-                return null;
+            if (equal && value === equal.value && this.isReverse) {
+                delete equal.errors['validateEqual'];
+                if (!Object.keys(equal.errors).length)
+                    equal.setErrors(null);
+            }
+            if (equal && value !== equal.value && this.isReverse) {
+                equal.setErrors({ validateEqual: false });
             }
         }
-        else {
-            return null;
-        }
+        return null;
     };
+    Object.defineProperty(EqualValidator.prototype, "isReverse", {
+        get: function () {
+            if (!this.reverse)
+                return false;
+            return this.reverse === 'true' ? true : false;
+        },
+        enumerable: true,
+        configurable: true
+    });
     return EqualValidator;
 }());
 EqualValidator = EqualValidator_1 = __decorate([
@@ -416,7 +447,8 @@ EqualValidator = EqualValidator_1 = __decorate([
         ]
     }),
     __param(0, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["r" /* Attribute */])('validateEqual')),
-    __metadata("design:paramtypes", [String])
+    __param(1, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["r" /* Attribute */])('reverse')),
+    __metadata("design:paramtypes", [String, String])
 ], EqualValidator);
 
 var EqualValidator_1;
@@ -489,7 +521,6 @@ var RegModel = (function () {
         this.login = '';
         this.email = '';
         this.password = '';
-        this.confirmPassword = '';
     }
     return RegModel;
 }());
@@ -633,7 +664,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "form .welcome-container {\r\n    height: 100px;\r\n}\r\nform .welcome-container p {\r\n    position: absolute;\r\n    left: 50px;\r\n    top: 50%;\r\n}", ""]);
 
 // exports
 
@@ -721,7 +752,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/registration/registration.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12\">\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6\">\r\n          <form class=\"form-signin\"\r\n                name=\"regForm\"\r\n                #regForm=\"ngForm\"\r\n                novalidate\r\n                (submit)=\"onSubmit(regForm)\">\r\n            <h2 class=\"form-signin-heading form-heading\">{{ 'REGISTRATION_FORM_HEADER' | translate }}</h2>\r\n            <language-switch></language-switch>\r\n            <div class=\"form-group\"\r\n                  [ngClass]=\"{'data-error': (regForm.submitted && !name.valid) }\">\r\n              <label for=\"inputName\">{{ 'NAME' | translate }}</label>\r\n              <input type=\"text\" \r\n                      id=\"inputName\"\r\n                      name=\"name\"\r\n                      class=\"form-control\"\r\n                      #name=\"ngModel\"\r\n                      [(ngModel)]=\"regModel.name\"\r\n                      placeholder=\"\" \r\n                      required \r\n                      autofocus>\r\n            </div>\r\n            <div [hidden]=\"!regForm.submitted || name.valid\">\r\n              <div class=\"alert alert-danger\">{{ 'NAME_REQUIRED' | translate }}</div>\r\n            </div>\r\n            <div class=\"form-group\"\r\n                  [ngClass]=\"{'data-error': (regForm.submitted && !login.valid) }\">\r\n              <label for=\"inputLogin\">{{ 'LOGIN' | translate }}</label>\r\n              <input type=\"text\" \r\n                      id=\"inputLogin\"\r\n                      name=\"login\" \r\n                      class=\"form-control\"\r\n                      #login=\"ngModel\"\r\n                      [(ngModel)]=\"regModel.login\"\r\n                      placeholder=\"\" \r\n                      required>\r\n            </div>\r\n            <div [hidden]=\"!regForm.submitted || login.valid\">\r\n              <div class=\"alert alert-danger\">{{ 'LOGIN_REQUIRED' | translate }}</div>\r\n            </div>\r\n            <div class=\"form-group\"\r\n                  [ngClass]=\"{'data-error': (regForm.submitted && !email.valid) }\">\r\n              <label for=\"inputEmail\">{{ 'EMAIL' | translate }}</label>\r\n              <input type=\"email\" \r\n                      id=\"inputEmail\"\r\n                      name=\"email\"\r\n                      #email=\"ngModel\"\r\n                      [(ngModel)]=\"regModel.email\"\r\n                      [validEmail]=\"emailRegExp\"\r\n                      class=\"form-control\" \r\n                      placeholder=\"\" \r\n                      required>\r\n            </div>\r\n            <div class=\"alert alert-danger\" *ngIf=\"regForm.submitted && !email.valid\">\r\n              <div *ngIf=\"email.errors.required\">{{ 'EMAIL_REQUIRED' | translate }}</div>\r\n              <div *ngIf=\"email.errors.validEmail\">{{ 'INVALID_EMAIL' | translate }}</div>\r\n            </div>\r\n            <div class=\"form-group\"\r\n                  [ngClass]=\"{'data-error': (regForm.submitted && !password.valid) }\">\r\n              <label for=\"inputPassword\">{{ 'PASSWORD' | translate }}</label>\r\n              <input type=\"password\" \r\n                      id=\"inputPassword\" \r\n                      name=\"password\"\r\n                      class=\"form-control\" \r\n                      #password=\"ngModel\"\r\n                      [(ngModel)]=\"regModel.password\"\r\n                      [validPassword]=\"passwordRegExp\"\r\n                      placeholder=\"\" \r\n                      required>\r\n            </div>\r\n            <div class=\"alert alert-danger\" *ngIf=\"regForm.submitted && !password.valid\">\r\n              <div *ngIf=\"password.errors.required\">{{ 'PASSWORD_REQUIRED' | translate }}</div>\r\n              <div *ngIf=\"password.errors.validPassword\">{{ 'PASSWORD_REQUIREMENTS' | translate }}</div>\r\n            </div>\r\n            <div class=\"form-group\"\r\n                  [ngClass]=\"{'data-error': (regForm.submitted && !confirmPassword.valid) }\">\r\n              <label for=\"confirmPassword\">{{ 'REPEAT_PASSWORD' | translate }}</label>\r\n              <input type=\"password\" \r\n                      id=\"confirmPassword\"\r\n                      name=\"confirmPassword\" \r\n                      class=\"form-control\"\r\n                      #confirmPassword=\"ngModel\"\r\n                      [(ngModel)]=\"regModel.confirmPassword\"\r\n                      validateEqual=\"password\"\r\n                      placeholder=\"\" \r\n                      required>\r\n            </div>\r\n            <div class=\"alert alert-danger\" *ngIf=\"regForm.submitted && !confirmPassword.valid\">\r\n              <div *ngIf=\"confirmPassword.errors.required\">{{ 'PASSWORD_REQUIRED' | translate }}</div>\r\n              <div *ngIf=\"confirmPassword.errors.validateEqual\">{{ 'NOT_MATCH_PASSWORD' | translate }}</div>\r\n            </div>\r\n            <div class=\"row\">\r\n              <div class=\"col-sm-12\">\r\n                <button class=\"btn btn-lg btn-default pull-right md-btn\" type=\"submit\">{{ 'NEXT' | translate }}</button>\r\n              </div>\r\n            </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-12\">\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6\">\r\n          <form class=\"form-signin\"\r\n                name=\"regForm\"\r\n                #regForm=\"ngForm\"\r\n                novalidate\r\n                (submit)=\"onSubmit(regForm)\">\r\n            <h2 class=\"form-signin-heading form-heading\">{{ 'REGISTRATION_FORM_HEADER' | translate }}</h2>\r\n            <language-switch></language-switch>\r\n            <div class=\"form-group\"\r\n                 [ngClass]=\"{'data-error': (regForm.submitted && !name.valid) }\">\r\n              <label for=\"inputName\">{{ 'NAME' | translate }}</label>\r\n              <input type=\"text\" \r\n                      id=\"inputName\"\r\n                      name=\"name\"\r\n                      class=\"form-control\"\r\n                      #name=\"ngModel\"\r\n                      [(ngModel)]=\"regModel.name\"\r\n                      placeholder=\"\" \r\n                      required \r\n                      autofocus>\r\n            </div>\r\n            <div [hidden]=\"!regForm.submitted || name.valid\">\r\n              <div class=\"alert alert-danger\">{{ 'NAME_REQUIRED' | translate }}</div>\r\n            </div>\r\n            <div class=\"form-group\"\r\n                  [ngClass]=\"{'data-error': (regForm.submitted && !login.valid) }\">\r\n              <label for=\"inputLogin\">{{ 'LOGIN' | translate }}</label>\r\n              <input type=\"text\" \r\n                      id=\"inputLogin\"\r\n                      name=\"login\" \r\n                      class=\"form-control\"\r\n                      #login=\"ngModel\"\r\n                      [(ngModel)]=\"regModel.login\"\r\n                      placeholder=\"\" \r\n                      required>\r\n            </div>\r\n            <div [hidden]=\"!regForm.submitted || login.valid\">\r\n              <div class=\"alert alert-danger\">{{ 'LOGIN_REQUIRED' | translate }}</div>\r\n            </div>\r\n            <div class=\"form-group\"\r\n                  [ngClass]=\"{'data-error': (regForm.submitted && !email.valid) }\">\r\n              <label for=\"inputEmail\">{{ 'EMAIL' | translate }}</label>\r\n              <input type=\"email\" \r\n                      id=\"inputEmail\"\r\n                      name=\"email\"\r\n                      #email=\"ngModel\"\r\n                      [(ngModel)]=\"regModel.email\"\r\n                      [validEmail]=\"emailRegExp\"\r\n                      class=\"form-control\" \r\n                      placeholder=\"\" \r\n                      required>\r\n            </div>\r\n            <div class=\"alert alert-danger\" *ngIf=\"regForm.submitted && !email.valid\">\r\n              <div *ngIf=\"email.errors.required\">{{ 'EMAIL_REQUIRED' | translate }}</div>\r\n              <div *ngIf=\"email.errors.validEmail\">{{ 'INVALID_EMAIL' | translate }}</div>\r\n            </div>\r\n            <div class=\"form-group\"\r\n                  [ngClass]=\"{'data-error': (regForm.submitted && !password.valid) }\">\r\n              <label for=\"inputPassword\">{{ 'PASSWORD' | translate }}</label>\r\n              <input type=\"password\" \r\n                      id=\"inputPassword\" \r\n                      name=\"password\"\r\n                      class=\"form-control\" \r\n                      #password=\"ngModel\"\r\n                      [(ngModel)]=\"regModel.password\"\r\n                      validateEqual=\"confirmPassword\"\r\n                      reverse=\"true\"\r\n                      [validPassword]=\"passwordRegExp\"\r\n                      placeholder=\"\" \r\n                      required>\r\n            </div>\r\n            <div class=\"alert alert-danger\" *ngIf=\"regForm.submitted && !password.valid\">\r\n              <div *ngIf=\"password.errors.required\">{{ 'PASSWORD_REQUIRED' | translate }}</div>\r\n              <div *ngIf=\"password.errors.validPassword\">{{ 'PASSWORD_REQUIREMENTS' | translate }}</div>\r\n            </div>\r\n            <div class=\"form-group\"\r\n                  [ngClass]=\"{'data-error': (regForm.submitted && !confirmPassword.valid) }\">\r\n              <label for=\"confirmPassword\">{{ 'REPEAT_PASSWORD' | translate }}</label>\r\n              <input type=\"password\" \r\n                      id=\"confirmPassword\"\r\n                      name=\"confirmPassword\" \r\n                      class=\"form-control\"\r\n                      #confirmPassword=\"ngModel\"\r\n                      [(ngModel)]=\"confirmPass\"\r\n                      validateEqual=\"password\"\r\n                      placeholder=\"\" \r\n                      required>\r\n            </div>\r\n            <div class=\"alert alert-danger\" *ngIf=\"regForm.submitted && !confirmPassword.valid\">\r\n              <div *ngIf=\"confirmPassword.errors.required\">{{ 'PASSWORD_REQUIRED' | translate }}</div>\r\n              <div *ngIf=\"confirmPassword.errors['validateEqual']===false\">{{ 'NOT_MATCH_PASSWORD' | translate }}</div>\r\n            </div>\r\n            <div class=\"row\">\r\n              <div class=\"col-sm-12\">\r\n                <button class=\"btn btn-lg btn-default pull-right md-btn\" type=\"submit\">{{ 'NEXT' | translate }}</button>\r\n              </div>\r\n            </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -761,17 +792,13 @@ var RegistrationComponent = (function () {
         this.passwordRegExp = __WEBPACK_IMPORTED_MODULE_5__common_constants_app_constants__["a" /* AppConstants */].pwRegExp;
     }
     RegistrationComponent.prototype.ngOnInit = function () {
-        /*this.regForm = new FormGroup({
-          'email': new FormControl(this.regModel.email, [
-            Validators.required,
-            emailValidator()
-          ])
-        })*/
     };
     RegistrationComponent.prototype.onSubmit = function (form) {
-        if (form.invalid)
+        if (form.invalid) {
             return;
-        this.auth.singUp(Object.assign({}, this.regModel));
+        }
+        var user = Object.assign({}, this.regModel);
+        this.auth.singUp(user);
         form.resetForm();
         this.router.navigate([this.appSettings.confirmPath]);
     };

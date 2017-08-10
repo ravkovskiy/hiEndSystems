@@ -35,7 +35,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\r\nform {\r\n    border: 1px solid #ddd;\r\n    padding: 20px;\r\n    margin-top: 20px;\r\n}\r\nform .translate-switch {\r\n    position: absolute;\r\n    right: 37px;\r\n    top: 40px;\r\n}\r\n.translate-switch .nav-tabs>li>a {\r\n    margin-right: 0;\r\n}\r\nform .form-heading {\r\n    margin-top: 0px;\r\n    margin-bottom: 20px;\r\n}\r\nform .md-btn {\r\n    padding: 10px 40px;\r\n}\r\n\r\nform .welcome-container {\r\n    height: 100px;\r\n}\r\n\r\nform .welcome-container p {\r\n    position: absolute;\r\n    left: 50px;\r\n    top: 50%;\r\n}\r\nform .data-error input {\r\n    border-color: #a94442;\r\n}\r\nform .data-error input:focus {\r\n    box-shadow: 0 0 8px #a94442;\r\n    border-color: #a94442;\r\n}", ""]);
+exports.push([module.i, "form {\r\n    border: 1px solid #ddd;\r\n    padding: 20px;\r\n    margin-top: 20px;\r\n}\r\nform .form-heading {\r\n    margin-top: 0px;\r\n    margin-bottom: 20px;\r\n}\r\nform .md-btn {\r\n    padding: 10px 40px;\r\n}\r\nform .data-error input {\r\n    border-color: #a94442;\r\n}\r\nform .data-error input:focus {\r\n    box-shadow: 0 0 8px #a94442;\r\n    border-color: #a94442;\r\n}", ""]);
 
 // exports
 
